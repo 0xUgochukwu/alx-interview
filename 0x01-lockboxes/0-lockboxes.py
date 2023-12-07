@@ -1,7 +1,5 @@
 #!usr/bin/python3
-'''
-    ALX Interview - Lockboxes
-'''
+''' ALX Interview - Lockboxes '''
 
 
 def canUnlockAll(boxes):
