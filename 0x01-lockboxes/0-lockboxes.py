@@ -3,6 +3,7 @@
     ALX Interview - Lockboxes
 '''
 
+
 def canUnlockAll(boxes):
     '''
         Returns True if all the boxs can be unlocked
