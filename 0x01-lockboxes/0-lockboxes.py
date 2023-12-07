@@ -3,26 +3,20 @@
     ALX Interview - Lockboxes
 '''
 
-
 def canUnlockAll(boxes):
     '''
         Returns True if all the boxs can be unlocked
-        and False if they can't.
+        and False if they can't
     '''
-    keys = boxes[0]
-    locked_boxes = boxes[1:]
+    keys = [0]
+    opened_boxes = {0}
 
-    for n in range(1, len(boxes)):
-        if n in set(keys) and boxes[n] in locked_boxes:
-            keys.extend(boxes[n])
-            locked_boxes.remove(boxes[n])
+    while keys:
+        current_box = keys.pop()
 
-        for key in set(keys):
-            if boxes[key] in locked_boxes:
-                keys.extend(boxes[key])
-                locked_boxes.remove(boxes[key])
+        for key in boxes[current_box]:
+            if key not in opened_boxes and key < len(boxes):
+                opened_boxes.add(key)
+                keys.append(key)
 
-    if locked_boxes:
-        return False
-
-    return True
+    return len(opened_boxes) == len(boxes)
