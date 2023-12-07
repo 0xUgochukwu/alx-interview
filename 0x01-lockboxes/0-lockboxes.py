@@ -3,10 +3,7 @@
 
 
 def canUnlockAll(boxes):
-    '''
-    Returns True if all the boxs can be unlocked
-    and False if they can't.
-    '''
+    ''' Checks if all boxes can be unlocked '''
     keys = boxes[0]
     locked_boxes = boxes[1:]
 
