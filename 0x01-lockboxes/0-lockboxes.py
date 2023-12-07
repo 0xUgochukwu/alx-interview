@@ -1,13 +1,12 @@
-#!usr/bin/python3
-'''
-    ALX Interview - Lockboxes
+#!/usr/bin/python3
+'''A module for working with lockboxes.
 '''
 
 
 def canUnlockAll(boxes):
-    '''
-        Returns True if all the boxs can be unlocked
-        and False if they can't
+    '''Checks if all the boxes in a list of boxes containing the keys
+    (indices) to other boxes can be unlocked given that the first
+    box is unlocked.
     '''
     n = len(boxes)
     seen_boxes = set([0])
