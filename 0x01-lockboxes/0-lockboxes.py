@@ -13,7 +13,6 @@ def canUnlockAll(boxes):
     locked_boxes = boxes[1:]
 
     for n in range(1, len(boxes)):
-        print(n)
         if n in set(keys) and boxes[n] in locked_boxes:
             keys.extend(boxes[n])
             locked_boxes.remove(boxes[n])
