@@ -3,12 +3,12 @@
     ALX Interview - Lockboxes
 '''
 
+
 def canUnlockAll(boxes):
     '''
         Returns True if all the boxs can be unlocked
         and False if they can't
     '''
-    print("boxes: " + str(boxes))
     keys = boxes[0]
     locked_boxes = boxes[1:]
 
@@ -16,10 +16,7 @@ def canUnlockAll(boxes):
         print(n)
         if n in set(keys) and boxes[n] in locked_boxes:
             keys.extend(boxes[n])
-            print("locked boxes: " + str(locked_boxes))
-            print("current box:" + str(boxes[n]))
             locked_boxes.remove(boxes[n])
-            print("keys:" + str(set(keys)))
 
         for key in set(keys):
             if boxes[key] in locked_boxes:
