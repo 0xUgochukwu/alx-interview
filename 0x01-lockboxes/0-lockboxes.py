@@ -1,9 +1,14 @@
-#!usr/bin/python3
-''' ALX Interview - Lockboxes '''
+#!/usr/bin/python3
+'''
+    ALX Interview - Lockboxes
+'''
 
 
 def canUnlockAll(boxes):
-    ''' Checks if all boxes can be unlocked '''
+    '''
+        Returns True if all the boxs can be unlocked
+        and False if they can't.
+    '''
     keys = boxes[0]
     locked_boxes = boxes[1:]
 
