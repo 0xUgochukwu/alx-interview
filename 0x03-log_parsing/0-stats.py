@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """script that reads stdin line by line and computes metrics"""
 
+
 import sys
+
 
 def print_stats():
     print('File size: {:d}'.format(sum_file_size))
@@ -10,6 +12,7 @@ def print_stats():
         value = status_code[key]
         if value != 0:
             print('{}: {}'.format(key, value))
+
 
 i = 0
 sum_file_size = 0
