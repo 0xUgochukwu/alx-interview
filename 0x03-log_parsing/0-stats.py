@@ -1,45 +1,44 @@
 #!/usr/bin/python3
-'''
-    Log Parsing.
-'''
-
-import re
-from sys import stdin
+"""script that reads stdin line by line and computes metrics"""
 
 
-def print_logs_stats(file_size, stats):
-    '''
-        Prints the generated statistics.
-    '''
-    print(f'File size: {file_size}')
-    for code, count in sorted(stats.items()):
-        print(f'{code}: {count}')
+import sys
 
 
-if __name__ == '__main__':
-    n = 0
-    file_size = 0
-    stats = {}
-    pattern = re.compile(r'''
-        \d+\.\d+\.\d+\.\d+ # ip address
-        \s-\s\[(.*?)\]\s # date
-        "GET\s/projects/260\sHTTP/1.1"\s # request line
-        (?P<status_code>\d+)\s # status code
-        (?P<file_size>\d+) # file size
-    ''', re.VERBOSE)
-    try:
-        for line in stdin:
-            match = pattern.match(line)
-            if match:
-                file_size += int(match.group('file_size'))
-                status_code = match.group('status_code')
-                if status_code in stats:
-                    stats[status_code] += 1
-                else:
-                    stats[status_code] = 1
-                n += 1
-            if n % 10 == 0:
-                print_logs_stats(file_size, stats)
+def print_stats():
+    print('File size: {:d}'.format(sum_file_size))
+    sorted_keys = sorted(status_code.keys())
+    for key in sorted_keys:
+        value = status_code[key]
+        if value != 0:
+            print('{}: {}'.format(key, value))
 
-    except (KeyboardInterrupt, EOFError):
-        print_logs_stats(file_size, stats)
+
+i = 0
+sum_file_size = 0
+status_code = {'200': 0,
+               '301': 0,
+               '400': 0,
+               '401': 0,
+               '403': 0,
+               '404': 0,
+               '405': 0,
+               '500': 0}
+
+try:
+    for line in sys.stdin:
+        args = line.split(' ')
+        if len(args) > 2:
+            status_line = args[-2]
+            file_size = args[-1]
+            if status_line in status_code:
+                status_code[status_line] += 1
+            sum_file_size += int(file_size)
+            i += 1
+            if i == 10:
+                print_stats()
+                i = 0
+except Exception:
+    pass
+finally:
+    print_stats()
