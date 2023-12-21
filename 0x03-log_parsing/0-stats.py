@@ -40,8 +40,6 @@ if __name__ == '__main__':
             n += 1
             if n == 10:
                 print_stats(file_size, stats)
-                file_size = 0
-                stats = {}
                 n = 0
 
     except KeyboardInterrupt:
