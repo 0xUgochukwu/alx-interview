@@ -42,5 +42,5 @@ if __name__ == '__main__':
                 print_logs_stats(file_size, stats)
                 n = 0
 
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, EOFError):
         print_logs_stats(file_size, stats)
