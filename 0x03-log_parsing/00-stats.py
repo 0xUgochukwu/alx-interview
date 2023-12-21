@@ -37,7 +37,7 @@ if __name__ == '__main__':
                     stats[status_code] += 1
                 else:
                     stats[status_code] = 1
-            n += 1
+                n += 1
             if n % 10 == 0:
                 print_logs_stats(file_size, stats)
 
