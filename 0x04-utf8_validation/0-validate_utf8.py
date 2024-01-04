@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-    ALX Interview - UTF-8 Validation. 
+    ALX Interview - UTF-8 Validation.
 '''
 
 
