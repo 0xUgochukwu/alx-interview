@@ -14,25 +14,21 @@ def validUTF8(data):
     Returns:
         bool: True if data is a valid UTF-8 encoding, else False.
     """
-    num_bytes_to_follow = 0
+    count = 0
 
-    for byte in data:
-        byte_bin = format(byte, '08b')
-
-        if num_bytes_to_follow == 0:
-            if byte_bin.startswith('0'):
-                continue
-            elif byte_bin.startswith('110'):
-                num_bytes_to_follow = 1
-            elif byte_bin.startswith('1110'):
-                num_bytes_to_follow = 2
-            elif byte_bin.startswith('11110'):
-                num_bytes_to_follow = 3
-            else:
+    for num in data:
+        if count == 0:
+            if (num >> 5) == 0b110:
+                count = 1
+            elif (num >> 4) == 0b1110:
+                count = 2
+            elif (num >> 3) == 0b11110:
+                count = 3
+            elif (num >> 7):
                 return False
         else:
-            if not byte_bin.startswith('10'):
+            if (num >> 6) != 0b10:
                 return False
-            num_bytes_to_follow -= 1
+            count -= 1
 
-    return num_bytes_to_follow == 0
+    return count == 0
