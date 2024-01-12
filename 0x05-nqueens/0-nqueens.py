@@ -40,7 +40,7 @@ def nQueens(board, col):
                 if board[i][j]:
                     sol.append([i, j])
         print(sol)
-        return True
+        return
 
     for i in range(N):
         if isSafe(board, i, col):
