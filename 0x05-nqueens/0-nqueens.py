@@ -18,8 +18,6 @@ def isSafe(board, row, col):
         if board[j][col]:
             return False
 
-    # print(list(zip(range(row, -1, -1), range(col, -1, -1))))
-    # print(list(zip(range(row + 1, len(board[0]), 1), range(col - 1, -1, -1))))
     for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
         if board[i][j]:
             return False
@@ -44,14 +42,12 @@ def nQueens(board, col):
         print(sol)
         return True
 
-
     for i in range(N):
         if isSafe(board, i, col):
             board[i][col] = 1
-            
             nQueens(board, col + 1)
-
             board[i][col] = 0
+
 
 if __name__ == '__main__':
     if len(argv) != 2:
