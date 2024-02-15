@@ -26,28 +26,49 @@ def filter_multiples(num, nums):
 
 
 def isWinner(x, nums):
-    """ Plays the prime game between Ben and Mira and returns the winner
-    """
     if x < 1:
         return None
 
-    players = {"Ben": 0, "Maria": 0}
-    player = "Maria"
+    scores = {"Maria": 0, "Ben": 0}
+    for n in nums:
+        numbers = list(range(1, n + 1))
+        turn = "Maria"
+        while True:
+            primes = [i for i in numbers if is_prime(i)]
+            if not primes:
+                scores[turn] += 1
+                break
+            prime = min(primes)
+            numbers = filter_multiples(prime, numbers)
+            turn = "Ben" if turn == "Maria" else "Maria"
 
-    for i in range(x):
-        if len(nums) == 0:
-            break
-
-        num_range = range(1, nums + 1)
-        for i in num_range:
-            if is_prime(i):
-                num_range = filter_multiples(i, num_range)
-                players[player] += 1
-                player = "Ben" if player == "Maria" else "Maria"
-            players[player] += 1
-
-        player = "Maria"
-
-    if players["Ben"] == players["Maria"]:
+    if scores["Maria"] == scores["Ben"]:
         return None
-    return max(players, key=players.get)
+    return "Maria" if scores["Maria"] > scores["Ben"] else "Ben"
+
+# def isWinner(x, nums):
+#     """ Plays the prime game between Ben and Mira and returns the winner
+#     """
+#     if x < 1:
+#         return None
+
+#     players = {"Ben": 0, "Maria": 0}
+#     player = "Maria"
+
+#     for i in range(x):
+#         if len(nums) == 0:
+#             break
+
+#         num_range = range(1, nums + 1)
+#         for i in num_range:
+#             if is_prime(i):
+#                 num_range = filter_multiples(i, num_range)
+#                 players[player] += 1
+#                 player = "Ben" if player == "Maria" else "Maria"
+#             players[player] += 1
+
+#         player = "Maria"
+
+#     if players["Ben"] == players["Maria"]:
+#         return None
+#     return max(players, key=players.get)
