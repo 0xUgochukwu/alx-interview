@@ -31,20 +31,29 @@ def isWinner(x, nums):
     if x < 1:
         return None
 
-    players = {"Ben": 0, "Maria": 0}
-    player = "Maria"
+    ben = 0
+    maria = 0
 
-    for num in nums:
-        num_range = list(range(1, num + 1))
-        for i in num_range:
-            if is_prime(i):
-                num_range = filter_multiples(i, num_range)
-                players[player] += 1
-                player = "Ben" if player == "Maria" else "Maria"
-            players[player] += 1
+    for i in range(x):
+        if len(nums) == 0:
+            break
 
-        player = "Maria"
+        prime = 0
+        for n in nums:
+            if is_prime(n):
+                prime = n
+                break
 
-    if players["Ben"] == players["Maria"]:
+        if prime == 0:
+            break
+
+        if i % 2 == 0:
+            ben += 1
+        else:
+            maria += 1
+
+        nums = filter_multiples(prime, nums)
+
+    if ben == maria:
         return None
-    return max(players, key=players.get)
+    return "Maria" if maria > ben else "Ben"
