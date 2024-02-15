@@ -26,6 +26,8 @@ def filter_multiples(num, nums):
 
 
 def isWinner(x, nums):
+    """ Plays the prime game between Ben and Mira and returns the winner
+    """
     if x < 1:
         return None
 
