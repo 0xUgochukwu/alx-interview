@@ -2,6 +2,7 @@
 """ ALX Interview - Prime Game
 """
 
+
 def is_prime(num):
     """ Calculates if a given number is a prime number
     """
@@ -9,6 +10,7 @@ def is_prime(num):
         if num % n == 0:
             return False
     return True
+
 
 def filter_multiples(num, nums):
     """ Filters out a number and it's multiples from a list of numbers
@@ -19,15 +21,16 @@ def filter_multiples(num, nums):
     #         to_remove.append(nums[n])
     # for n in to_remove:
     #     nums.remove(n)
-    
+    # return nums
     return list(filter(lambda x: x % num != 0, nums))
+
 
 def isWinner(x, nums):
     """ Plays the prime game between Ben and Mira and returns the winner
     """
     if x < 1:
         return None
-    
+
     players = {"Ben": 0, "Maria": 0}
     player = "Maria"
 
@@ -39,9 +42,9 @@ def isWinner(x, nums):
                 players[player] += 1
                 player = "Ben" if player == "Maria" else "Maria"
             players[player] += 1
-        
+
         player = "Maria"
-    
+
     if players["Ben"] == players["Maria"]:
         return None
     return max(players, key=players.get)
