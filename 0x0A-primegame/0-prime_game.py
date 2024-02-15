@@ -45,30 +45,3 @@ def isWinner(x, nums):
     if scores["Maria"] == scores["Ben"]:
         return None
     return "Maria" if scores["Maria"] > scores["Ben"] else "Ben"
-
-# def isWinner(x, nums):
-#     """ Plays the prime game between Ben and Mira and returns the winner
-#     """
-#     if x < 1:
-#         return None
-
-#     players = {"Ben": 0, "Maria": 0}
-#     player = "Maria"
-
-#     for i in range(x):
-#         if len(nums) == 0:
-#             break
-
-#         num_range = range(1, nums + 1)
-#         for i in num_range:
-#             if is_prime(i):
-#                 num_range = filter_multiples(i, num_range)
-#                 players[player] += 1
-#                 player = "Ben" if player == "Maria" else "Maria"
-#             players[player] += 1
-
-#         player = "Maria"
-
-#     if players["Ben"] == players["Maria"]:
-#         return None
-#     return max(players, key=players.get)
